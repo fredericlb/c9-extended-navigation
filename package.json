@@ -1,6 +1,5 @@
 {
   "name": "extended-navigation",
-  "description": "Provide extra commands for navigation and edition in Clou9 IDE",
   "version": "0.0.0",
   "engines": {"c9": ">=3.0.0"},
   "author": "Frédéric Langlade-Bellone <fred@parapluie.org",
