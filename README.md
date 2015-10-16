@@ -8,10 +8,7 @@ This plugin includes additional github commands for navigation and editon in Clo
 
 Expand current selection based on current langage rules.
 
-<video width="320" height="240" controls>
-  <source src="http://zippy.gfycat.com/GiantPlasticBlackandtancoonhound.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+<a href="https://imgflip.com/gif/snvl4"><img src="https://i.imgflip.com/snvl4.gif" title="made at imgflip.com"/></a>
 
 Controls : Alt-l on Windows, Alt-Up on OSX.
 
@@ -19,7 +16,6 @@ Currently works with JavaScript, JSX, CSS, SASS and LESS.
 
 ## TODO
 
-- [] Shrink selection
-- [] Go to file under cursor
-- [] Copy/cut line on empty selection
-
+- [ ] Shrink selection
+- [ ] Go to file under cursor
+- [ ] Copy/cut line on empty selection
