@@ -1,0 +1,21 @@
+{
+  "name": "extended-navigation",
+  "description": "Provide extra commands for navigation and edition in Clou9 IDE",
+  "version": "0.0.0",
+  "engines": {"c9": ">=3.0.0"},
+  "author": "Frédéric Langlade-Bellone <fred@parapluie.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fredericlb/c9-extended-navigation.git"
+  },
+  "plugins": {
+    "plugin": {}
+  },
+  "categories": [
+    "edition"
+  ],
+  "licenses": [],
+  "dependencies": {
+    "acorn": "^2.4.0"
+  }
+}
