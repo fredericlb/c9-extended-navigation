@@ -1,14 +1,18 @@
 {
-  "name": "extended-navigation",
-  "version": "0.0.0",
-  "engines": {"c9": ">=3.0.0"},
-  "author": "Frédéric Langlade-Bellone <fred@parapluie.org",
+  "name": "extended_navigation",
+  "version": "0.0.1",
+  "engines": {
+    "c9": ">=3.0.0"
+  },
+  "author": "Frédéric Langlade-Bellone <fred@parapluie.org>",
   "repository": {
     "type": "git",
     "url": "https://github.com/fredericlb/c9-extended-navigation.git"
   },
   "plugins": {
-    "plugin": {}
+    "plugin": {
+      "packagePath": "plugins/extended_navigation/plugin"
+    }
   },
   "categories": [
     "edition"
@@ -16,5 +20,6 @@
   "licenses": [],
   "dependencies": {
     "acorn": "^2.4.0"
-  }
+  },
+  "permissions": "world"
 }

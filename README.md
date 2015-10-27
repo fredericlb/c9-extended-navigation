@@ -2,6 +2,10 @@
 
 This plugin includes additional github commands for navigation and editon in Cloud9.
 
+## Installation
+
+```$ c9 install extended_navigation```
+
 ## Features
 
 ### Semantic aware expand selection
