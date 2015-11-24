@@ -1,14 +1,10 @@
 define(function(require, exports, module) {
     
-    var gonzales = require("../ext/gonzales.core.js");
-    require("../ext/gonzales.css.js")(gonzales);
-    require("../ext/gonzales.less.js")(gonzales);
-    require("../ext/gonzales.sass.js")(gonzales);
-    require("../ext/gonzales.scss.js")(gonzales);
+    var gonzales = require("../ext/gonzales.js");
     var walk = require("./expand.walk.js");
     
     module.exports = function(mode, content, selectionRange, c9) {
-        var ast = gonzales.parse(content, mode);
+        var ast = gonzales.parse(content, {syntax: mode});
         
         function getNodeRange(node) {
             var nodeStart = node.start;
