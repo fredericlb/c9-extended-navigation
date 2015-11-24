@@ -1,7 +1,11 @@
 define(function(require, exports, module) {
+    'use strict';
     
     var expandJS = require("./expand.js.js");
     var expandCSS = require("./expand.css.js");
+    
+    var _rangesStack = [];
+    var listeningToChanges = null;
     
     var expandLangages = {
         "ace/mode/javascript": expandJS,
@@ -11,7 +15,11 @@ define(function(require, exports, module) {
         "ace/mode/less": expandCSS.bind(null, "less"),
     };
     
-    module.exports = function(c9) {
+    function onSelectionChange(editor) {
+        _rangesStack = [];
+    }
+    
+    var expand = function(c9) {
         var t = c9.tabManager.focussedTab;
         var editor = t.editor.ace;
         var content = t.document.value;
@@ -27,15 +35,52 @@ define(function(require, exports, module) {
         var range = expandLangages[currentMode](content, selectionRange, c9);
         
         if (range !== null) {
-            editor.selection.setSelectionRange(range);
+            _rangesStack.push(selectionRange);
+            var save = _rangesStack;
             
+            editor.selection.setSelectionRange(range);
+
+            if (listeningToChanges === null) {
+                listeningToChanges = onSelectionChange.bind(null, editor);
+                editor.getSession().selection.on('changeSelection', listeningToChanges);
+            }
+
             var event = {
                 originalRange: selectionRange,
                 range: range
             };
             
+            _rangesStack = save;
             c9.emit("expanded", event);
         }
+    };
+    
+    var shrink = function(c9) {
+        var t = c9.tabManager.focussedTab;
+        var editor = t.editor.ace;
+        
+        if (_rangesStack.length === 0) {
+            return;
+        }
+        var save = _rangesStack;
+        
+        var selectionRange = editor.getSelectionRange();
+        var targetRange = _rangesStack.pop();
+        editor.selection.setSelectionRange(targetRange);
+        
+        var event = {
+            originalRange: selectionRange,
+            range: targetRange
+        };
+        
+        _rangesStack = save;
+        c9.emit("shrank", event);
+    };
+    
+    
+    module.exports = { 
+        expand: expand,
+        shrink: shrink
     };
     
 });

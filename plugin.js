@@ -3,7 +3,7 @@ define(function(require, exports, module) {
         "Plugin", "commands", "ace",
         "tabManager"
     ];
-    main.provides = ["expand"];
+    main.provides = ["extnav"];
 
     return main;
     
@@ -13,7 +13,7 @@ define(function(require, exports, module) {
         var commands = imports.commands;
         var tabManager = imports.tabManager;
         
-        var expand = require("./src/expand.core.js");
+        var actions = require("./src/expand.core.js");
         
         
         /***** Initialization *****/
@@ -26,7 +26,17 @@ define(function(require, exports, module) {
                 name: "expandselection",
                 bindKey: { mac: "Alt-Up", win: "Alt-l" },
                 isAvailable: function(){ return true; },
-                exec: function() { expand({
+                exec: function() { actions.expand({
+                    tabManager: tabManager,
+                    AceRange: AceRange,
+                    emit: emit
+                }) }
+            }, plugin);
+            commands.addCommand({
+                name: "shrinkselection",
+                bindKey: { mac: "Alt-Down", win: "Alt-Shift-l" },
+                isAvailable: function(){ return true; },
+                exec: function() { actions.shrink({
                     tabManager: tabManager,
                     AceRange: AceRange,
                     emit: emit
@@ -48,15 +58,16 @@ define(function(require, exports, module) {
 
         plugin.freezePublicAPI({
             _events: [
-                "expanded"
+                "expanded",
+                "shrank"
             ],
             
-            expand: expand,
-            
+            expand: actions.expand,
+            shrink: actions.shrink,
         });
         
         register(null, {
-            "expand": plugin
+            "extnav": plugin
         });
     }
     
