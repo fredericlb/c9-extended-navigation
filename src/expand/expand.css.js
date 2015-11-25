@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
     
-    var gonzales = require("../ext/gonzales.js");
+    var gonzales = require("../../ext/gonzales.js");
     var walk = require("./expand.walk.js");
     
     module.exports = function(mode, content, selectionRange, c9) {

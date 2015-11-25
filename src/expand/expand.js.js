@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
     
-    var acorn = require('../ext/acorn-jsx.js')(require("../ext/acorn.js"));
+    var acorn = require('../../ext/acorn-jsx.js')(require("../../ext/acorn.js"));
     
     // FIXME Can't load acorn_loose if acorn is not in the global object
     window.acorn = acorn;
-    var acorn_loose = require('../ext/acorn_loose.js');
+    var acorn_loose = require('../../ext/acorn_loose.js');
     var walk = require("./expand.walk.js");
     
     module.exports = function(content, selectionRange, c9) {
